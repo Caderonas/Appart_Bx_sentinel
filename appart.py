@@ -5,11 +5,14 @@ from webdriver_manager.firefox import GeckoDriverManager
 from bs4 import BeautifulSoup
 import argparse
 import json
+from datetime import date
 
 '''
 pip3 install -U selenium
 pip3 install webdriver_manager
 '''
+
+DATE_OF_MOVING_IN = date.today() #used in SPOTAHOME
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Search appart')
@@ -24,7 +27,7 @@ if __name__ == "__main__":
 
 
     # SPOTAHOME
-    driver.get(f"https://www.spotahome.com/s/brussels/for-rent:apartments/for-rent:rooms/for-rent:studios/bedrooms:1/bedrooms:2?move-in=2022-01-06&budget=0-"+str(args.integers))
+    driver.get(f"https://www.spotahome.com/s/brussels/for-rent:apartments/for-rent:rooms/for-rent:studios/bedrooms:1/bedrooms:2?move-in="+str(DATE_OF_MOVING_IN)+"&budget=0-"+str(args.integers))
     
     soup = BeautifulSoup(driver.page_source, "lxml")
 
